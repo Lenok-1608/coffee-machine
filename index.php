@@ -14,19 +14,19 @@
    <div class="container">
      <div class="row mt-2">
        <div class="col-6 coffee-list d-flex flex-column justify-content-around">
-         <div class="coffee-item">
-           <img src="img/americano.png" alt="Американо">
+         <div class="coffee-item" cost="50" data-name="Американо" data-name-eng="Americano"  onclick="cookCoffee('Американо', 50, this)">
+           <img src="img/americano.png" alt='Американо'>
            <span>Американо - 50 руб.</span>
          </div>
-         <div class="coffee-item">
+         <div class="coffee-item" onclick="cookCoffee('Капучинно', 92, this)">
            <img src="img/cappuccino.png" alt="Капучинно">
            <span>Капучинно- 92 руб.</span>
          </div>
-         <div class="coffee-item">
+         <div class="coffee-item" onclick="cookCoffee('Эспрессо', 66, this)">
            <img src="img/espresso.png" alt="Эспрессо">
            <span> Эспрессо- 66 руб.</span>
        </div>
-       <div class="coffee-item">
+       <div class="coffee-item" onclick="cookCoffee('Латтэ', 128, this)">
            <img src="img/latte.jpg" alt="Латтэ">
            <span> Латтэ- 128 руб.</span>
              </div>
@@ -37,7 +37,7 @@
              <div class="display">
                <span>Выберите кофе</span>
                <div class="progress mt-2">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
               </div>
              </div>
              <div class="cup mt-3">
@@ -46,7 +46,7 @@
            </div>
            <div class="col-6">
              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Баланс" >
+                <input type="text" class="form-control balance" placeholder="Баланс" >
   <div class="input-group-append">
     <span class="input-group-text" id="basic-addon2">&#8381</span>
   </div>
@@ -63,6 +63,7 @@
      </div>
    </div>
     <!-- Optional JavaScript -->
+   <!-- <script src="lesson.js"></script>-->
     <script src="script.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
