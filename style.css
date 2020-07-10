@@ -47,6 +47,10 @@ font-family: 'Roboto Slab', serif;*/
 .cup img, .atm img {
   width: 100%;
 }
+.bill-container {
+  position: absolute;
+  background-color: red;
+}
 .cup img {
   display: none;
   opacity: 0;
@@ -56,4 +60,9 @@ font-family: 'Roboto Slab', serif;*/
   background-color: rgb(200, 200, 200);
   min-height: 100px;
   box-sizing: border-box;
+}
+
+.money img {
+  max-width: 200px;
+  cursor: pointer;
 }

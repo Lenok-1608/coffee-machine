@@ -86,3 +86,87 @@ function cookCoffee(name, price, elem) {
     }
   
   
+  
+  //----Drag'n'Drop-----
+  let money = document.querySelectorAll(".money img");
+  
+  //for (let i =0; i < money.length; i++) {
+   // money[i].onclick = takeMoney;
+  //}
+ for (let bill of money) {
+    bill.onmousedown = takeMoney;
+  }
+// в функцию, котоая присвоена событию, передается this,который возвращает элемент, на которм это событие повешено
+
+//в функцию, которая писвоена собыитию, первым параметром передается объект события - event, e
+  function takeMoney(event) {
+   event.preventDefault();
+    /*console.log(this);
+    console.log(event);
+    console.log([event.target, event.clientX,event.clientY]);*/
+    let bill = this;
+    console.log(bill.style.height);
+    console.log(bill.style.width);
+    console.log(bill.getBoundingClientRect() );
+    
+    let billCoords = bill.getBoundingClientRect();
+    
+    let billHeight = billCoords.height;
+     let billWidth = billCoords.width;
+     
+    bill.style.position = "absolute";
+    if (!bill.style.transform) {
+      bill.style.top = (event.clientY - billHeight/2) + "px";
+      bill.style.left = (event.clientX - billWidth/2)+ "px";
+      bill.style.transform = "rotate(90deg)";
+    } else {
+       bill.style.top = (event.clientY - billWidth/2) + "px";
+      bill.style.left = (event.clientX - billHeight/2)+ "px";
+   }
+    bill.style.transition = "transform.3s";
+    window.onmousemove = function(event) { // function () {}
+    let billCoords = bill.getBoundingClientRect();
+    let billHeight = billCoords.height;
+    let billWidth = billCoords.width;
+    bill.style.top = (event.clientY - billWidth/2) + "px";
+    bill.style.left = (event.clientX - billHeight/2)+ "px";
+  }
+  
+  bill.onmouseup = function() {
+   window.onmousemove = null;
+   if ( inAtm(bill) ) {
+     console.log( bill.getAttribute("data-cost") );
+     console.log( bill.dataset.cost );
+     balance.value = +balance.value + +bill.dataset.cost;
+     bill.remove();//удаляем элемент
+      }
+    }
+  }
+  function inAtm(bill) {
+    let atm = document.querySelector(".atm img");
+    let atmCoords = atm.getBoundingClientRect();
+    let atmLeftX = atmCoords.x;
+    let atmRightX = atmCoords.x + atmCoords.width;
+    let atmTopY = atmCoords.y;
+    let atmBottomY = atmCoords.y + atmCoords.height/3;
+    
+    let billCoords = bill.getBoundingClientRect();
+    let billLeftX = billCoords.x;
+    let billRightX = billCoords.x + billCoords.width;
+    let billY = billCoords.y;
+    if(
+          billLeftX > atmLeftX
+      &&  billRightX < atmRightX
+      &&  billY > atmTopY
+      &&  billY < atmBottomY
+       ) {
+    return true;
+       } else {
+         return false;
+       }
+  }
+   /* return {
+    atm: [atmLeftX, atmRightX,  atmTopY,  atmBottomY],
+    bill: [billLeftX, billRightX, billY],
+  };*/
+  
